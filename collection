@@ -1,0 +1,419 @@
+Type Conversions:
+
+(float(****)) converts the input to a float
+(str(****)) converts the iput to a string
+(int(****)) converts the input to an integer
+
+Python Keywords that cannot be used:
+
+and
+as
+assert
+break
+class
+continue
+def
+del
+elif
+else
+except
+exec
+finally
+for
+from
+global
+if
+import
+in
+is
+lambda
+nonlocal
+not
+or
+pass
+raise
+return
+try
+while
+with
+yield
+True
+False
+None
+
+Asking the user for input example:
+
+current_time = input("what is the current time (in hours 0--23)?")
+wait_time = input("How many hours do you want to wait")
+
+print(current_time)
+print(wait_time)
+
+final_time = current_time + wait_time
+print(final_time)
+
+Example of using input, integer, and string variables:
+
+n = input("What time is it now (in hours)?")
+n = int(n)
+m = input("How many hours do you want to wait?")
+m = int(m)
+sum_time = n + m
+time_of_day = sum_time % 12
+print("The time is now", time_of_day)
+
+Example of a Dice Roll:
+
+import random
+
+prob = random.random()
+print(prob)
+
+diceThrow = random.randrange(1,7)       # return an int, one of 1,2,3,4,5,6
+print(diceThrow)
+
+module
+A file containing Python definitions and statements intended for use in other Python programs. The contents of a module are made available to the other program by using the import statement.
+
+Using the import random to pick 10 numbers between 25 35:
+
+import random
+
+howmany = 10
+for counter in range(howmany):
+    arandom = random.randrange(25,35)
+    print(arandom)
+    
+Turtle exercise, drawing on the screen:
+
+import turtle
+wn = turtle.Screen()
+wn.bgcolor("lightgreen")
+tess = turtle.Turtle()
+tess.color("blue")
+tess.shape("turtle")
+
+dist = 5
+tess.up()                     # this is new
+for _ in range(30):    # start with size = 5 and grow by 2
+    tess.stamp()                # leave an impression on the canvas
+    tess.forward(dist)          # move tess along
+    tess.right(24)              # and turn her
+    dist = dist + 2
+wn.exitonclick()
+
+Printing a statement 100 times:
+
+for _ in range(100):
+    print("We like Python's turtles!")
+
+Drawing Shapes:
+
+# draw an equilateral triangle
+import turtle
+
+wn = turtle.Screen()
+norvig = turtle.Turtle()
+
+for i in range(3):
+    norvig.forward(100)
+
+    # the angle of each vertice of a regular polygon
+    # is 360 divided by the number of sides
+    norvig.left(360/3)
+
+wn.exitonclick()
+
+# draw a square
+import turtle
+
+wn = turtle.Screen()
+kurzweil = turtle.Turtle()
+
+for i in range(4):
+    kurzweil.forward(100)
+    kurzweil.left(360/4)
+
+wn.exitonclick()
+
+# draw a hexagon
+import turtle
+
+wn = turtle.Screen()
+dijkstra = turtle.Turtle()
+
+for i in range(6):
+    dijkstra.forward(100)
+    dijkstra.left(360/6)
+
+wn.exitonclick()
+
+# draw an octogon
+import turtle
+
+wn = turtle.Screen()
+knuth = turtle.Turtle()
+
+for i in range(8):
+    knuth.forward(75)
+    knuth.left(360/8)
+
+wn.exitonclick()
+
+#draw five pointed stars
+
+import turtle
+
+turing = turtle.Turtle()
+
+for i in range(5):
+    turing.forward(110)
+    turing.left(216)
+
+Using the len function:
+
+The len function, when applied to a string, returns the number of characters in a string.
+
+fruit = "Banana"
+print(len(fruit))
+
+alist =  ["hello", 2.0, 5]
+print(len(alist))
+print(len(alist[0]))
+
+Slicing:
+
+singers = "Peter, Paul, and Mary"
+print(singers[0:5])
+print(singers[7:11])
+print(singers[17:21])
+
+Slicing on a List:
+
+a_list = ['a', 'b', 'c', 'd', 'e', 'f']
+print(a_list[1:3])
+print(a_list[:4])
+print(a_list[3:])
+print(a_list[:])
+
+Using Count:
+
+a = "I have had an apple on my desk before!"
+print(a.count("e"))
+print(a.count("ha"))
+
+Using Index:
+
+music = "Pull out your music and dancing can begin"
+bio = ["Metatarsal", "Metatarsal", "Fibula", [], "Tibia", "Tibia", 43, "Femur", "Occipital", "Metatarsal"]
+
+print(music.index("m"))
+print(music.index("your"))
+
+print(bio.index("Metatarsal"))
+print(bio.index([]))
+print(bio.index(43))
+
+Using Split:
+
+song = "The rain in Spain..."
+wds = song.split()
+print(wds)
+
+Using Split and a delimiter:
+
+song = "The rain in Spain..."
+wds = song.split('ai')
+print(wds)
+
+Using Join:
+
+wds = ["red", "blue", "green"]
+glue = ';'
+s = glue.join(wds)
+print(s)
+print(wds)
+
+print("***".join(wds))
+print("".join(wds))
+
+Lists and for loops:
+
+fruits = ["apple", "orange", "banana", "cherry"]
+
+for afruit in fruits:     # by item
+    print(afruit)
+
+Generating a sequence to Iterate Over:
+
+print("This will execute first")
+
+for _ in range(3):
+    print("This line will execute three times")
+    print("This line will also execute three times")
+
+print("Now we are outside of the for loop!")
+
+Using Loops for the Turtle:
+
+import turtle            # set up alex
+wn = turtle.Screen()
+alex = turtle.Turtle()
+
+for aColor in ["yellow", "red", "purple", "blue"]:
+    alex.color(aColor)
+    alex.forward(50)
+    alex.left(90)
+
+wn.exitonclick()
+
+The Accumulator Pattern:
+
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+accum = 0
+for w in nums:
+    accum = accum + w
+print(accum)
+
+
+
+
+
+print("range(5): ")
+for i in range(5):
+    print(i)
+
+print("range(0,5): ")
+for i in range(0, 5):
+    print(i)
+
+# Notice the casting of `range` to the `list`
+print(list(range(5)))
+print(list(range(0,5)))
+
+# Note: `range` function is already casted as `list` in the textbook
+print(range(5))
+
+
+    
+
+accum = 0
+for w in range(11):
+    accum = accum + w
+print(accum)
+
+# or, if you use two inputs for the range function
+
+sec_accum = 0
+for w in range(1,11):
+    sec_accum = sec_accum + w
+print(sec_accum)
+
+
+
+Count the number of characters in string str1. Do not use len(). Save the number in variable numbs:
+
+str1 = "I like nonsense, it wakes up the brain cells. Fantasy is a necessary ingredient in living."
+numbs=0
+for i in str1:
+    numbs+=1
+print(numbs)
+
+
+
+Create a list of numbers 0 through 40 and assign this list to the variable numbers. Then, accumulate the total of the list’s values and assign that sum to the variable sum1:
+
+numbers = (range(0, 41))
+sum1 = 0
+for w in numbers:
+    sum1 = sum1 + w
+print(sum1)
+
+Indexing with Loops:
+
+fruits = ['apple', 'pear', 'apricot', 'cherry', 'peach']
+for n in range(len(fruits)):
+    print(n, fruits[n])
+
+Nested Iteration: Image Processing:
+
+#In the example below, we first create a pixel with 45 units of red, 76 units of green, and 200 units of blue. We then print the current amount of red, change the amount of red, and finally, set the amount of blue to be the same as the current amount of green.
+
+import image
+
+p = image.Pixel(45, 76, 200)
+print(p.getRed())
+p.setRed(66)
+print(p.getRed())
+p.setBlue(p.getGreen())
+print(p.getGreen(), p.getBlue())
+
+
+
+#Seeing width, height, and color configure for row and column 45, 55
+
+import image
+img = image.Image("luther.jpg")
+
+print(img.getWidth())
+print(img.getHeight())
+
+p = img.getPixel(45, 55)
+print(p.getRed(), p.getGreen(), p.getBlue())
+
+
+#Making an image negative
+
+import image
+
+img = image.Image("luther.jpg")
+win = image.ImageWin(img.getWidth(), img.getHeight())
+img.draw(win)
+img.setDelay(1,15)   # setDelay(0) turns off animation
+
+for row in range(img.getHeight()):
+    for col in range(img.getWidth()):
+        p = img.getPixel(col, row)
+
+        newred = 255 - p.getRed()
+        newgreen = 255 - p.getGreen()
+        newblue = 255 - p.getBlue()
+
+        newpixel = image.Pixel(newred, newgreen, newblue)
+
+        img.setPixel(col, row, newpixel)
+
+img.draw(win)
+win.exitonclick()
+
+
+
+#Write a program that asks the user for the number of sides, the length of the side, the color, and the fill color of a regular polygon. The program should draw the polygon and then fill it in.
+
+import turtle    
+
+wn = turtle.Screen()    
+alex = turtle.Turtle() # need parens    
+sides = int(input("Enter the number of sides: "))    
+angle = 360 / sides    
+length = int(input("Enter the length of sides: "))    
+line_color = input("Enter the color of the lines: ") # takes input like "red" or "black" etc.. 
+alex.color(line_color)    
+fill_color = input("Enter the fill color for the polygon:" )    
+alex.fillcolor(fill_color)    
+alex.begin_fill()    
+for i in range(sides):    
+        alex.forward(44)  # added 44, you had an undefined variable there which is not valid    
+        alex.left(angle)    
+alex.end_fill()
+
+
+
+
+    
+
+
+
+
+
+
