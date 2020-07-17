@@ -624,3 +624,485 @@ for wrd in wrd_lst:
     if len(wrd) < 6:
         accum += 1
 print(accum)
+
+#Lists are mutable, you can change an item in a list
+
+alist = ['a', 'b', 'c', 'd', 'e', 'f']
+alist[1:3] = ['x', 'y']
+print(alist)
+
+#We can even insert elements into a list by squeezing them into an empty slice at the desired location.
+
+alist = ['a', 'd', 'f']
+alist[1:1] = ['b', 'c']
+print(alist)
+alist[4:4] = ['e']
+print(alist)
+
+#Strings are immutable, you cannot change an item. Strings are immutable, which means you cannot change an existing string. The best you can do is create a new string that is a variation on the original.
+
+#List element deletion
+
+a = ['one', 'two', 'three']
+del a[1]
+print(a)
+
+alist = ['a', 'b', 'c', 'd', 'e', 'f']
+del alist[1:5]
+print(alist)
+
+#Making a clone of a list
+
+a = [81,82,83]
+
+b = a[:]       # make a clone using slice
+print(a == b)
+print(a is b)
+
+b[0] = 5
+
+print(a)
+print(b)
+
+#List methods
+
+mylist = []
+mylist.append(5)
+mylist.append(27)
+mylist.append(3)
+mylist.append(12)
+print(mylist)
+
+mylist.insert(1, 12)
+print(mylist)
+print(mylist.count(12))
+
+print(mylist.index(3))
+print(mylist.count(5))
+
+mylist.reverse()
+print(mylist)
+
+mylist.sort()
+print(mylist)
+
+mylist.remove(5)
+print(mylist)
+
+lastitem = mylist.pop()
+print(lastitem)
+print(mylist)
+
+#We can use append or concatenate repeatedly to create new objects. If we had a string and wanted to make a new list, where each element in the list is a character in the string, where do you think you should start? In both cases, you’ll need to first create a variable to store the new object.
+
+st = "Warmth"
+a = []
+a.append(st[0])
+a.append(st[1])
+a.append(st[2])
+a.append(st[3])
+a.append(st[4])
+a.append(st[5])
+print(a)
+
+#Upper and Lowercase for strings
+
+ss = "Hello, World"
+print(ss.upper())
+
+tt = ss.lower()
+print(tt)
+print(ss)
+
+#Counting how many "l"'s are in Hello, World and stripping the spaces
+
+ss = "    Hello, World    "
+
+els = ss.count("l")
+print(els)
+
+print("***"+ss.strip()+"***")
+
+news = ss.replace("o", "***")
+print(news)
+
+#Using a list to print a statement
+
+scores = [("Rodney Dangerfield", -1), ("Marlon Brando", 1), ("You", 100)]
+for person in scores:
+    name = person[0]
+    score = person[1]
+    print("Hello {}. Your score is {}.".format(name, score))
+    
+#Using .format in strings
+
+person = input('Your name: ')
+greeting = 'Hello {}!'.format(person)
+print(greeting)
+
+#Calculator for orignal price and discount
+
+origPrice = float(input('Enter the original price: $'))
+discount = float(input('Enter discount percentage: '))
+newPrice = (1 - discount/100)*origPrice
+calculation = '${} discounted by {}% is ${}.'.format(origPrice, discount, newPrice)
+print(calculation)
+
+#Calculator using ":.2f" in braces
+
+origPrice = float(input('Enter the original price: $'))
+discount = float(input('Enter discount percentage: '))
+newPrice = (1 - discount/100)*origPrice
+calculation = '${:.2f} discounted by {}% is ${:.2f}.'.format(origPrice, discount, newPrice)
+print(calculation)
+
+#Accumlator pattern with lists
+
+#For each word in the list verbs, add an -ing ending. Save this new list in a new list, ing.
+
+verbs = ["kayak", "cry", "walk", "eat", "drink", "fly"]
+ing = []
+for i in verbs:
+    x = i + "ing"
+    ing.append(x)
+print(ing)
+
+#Given the list of numbers, numbs, create a new list of those same numbers increased by 5. Save this new list to the variable newlist.
+
+numbs = [5, 10, 15, 20, 25]
+newlist = []
+for i in numbs:
+    x = i + 5
+    newlist.append(x)
+print(newlist)
+
+#For each number in lst_nums, multiply that number by 2 and append it to a new list called larger_nums.
+
+lst_nums = [4, 29, 5.3, 10, 2, 1817, 1967, 9, 31.32]
+larger_nums = []
+for i in lst_nums:
+    x = i * 2
+    larger_nums.append(x)
+print(larger_nums)
+
+#For each character in the string already saved in the variable str1, add each character to a list called chars.
+
+str1 = "I love python"
+chars = []
+for c in str1: 
+    chars.append(c) 
+print(chars) 
+
+#Assign an empty string to the variable output. Using the range function, write code to make it so that the variable output has 35 a s inside it (like "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"). Hint: use the accumulation pattern!
+
+output = ""
+
+for i in range(0,35):
+  output = output + 'a'
+print(output)
+
+#First letter for each item in a list
+
+colors = ["Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet"]
+initials = []
+
+for color in colors:
+    initials.append(color[0])
+
+print(initials)
+
+#Starting with the list myList = [76, 92.3, ‘hello’, True, 4, 76], write Python statements to do the following:
+
+#Append “apple” and 76 to the list.
+
+#Insert the value “cat” at position 3.
+
+#Insert the value 99 at the start of the list.
+
+#Find the index of “hello”.
+
+#Count the number of 76s in the list.
+
+#Remove the first occurrence of 76 from the list.
+
+#Remove True from the list using pop and index.
+
+myList = [76, 92.3, 'hello', True, 4, 76]
+
+myList.append("apple")         # a
+myList.append(76)              # a
+myList.insert(3, "cat")        # b
+myList.insert(0, 99)           # c
+
+print(myList.index("hello"))   # d
+print(myList.count(76))        # e
+myList.remove(76)              # f
+myList.pop(myList.index(True)) # g
+
+print (myList)
+
+#For each string in wrds, add ‘ed’ to the end of the word (to make the word past tense). Save these past tense words to a list called past_wrds.
+
+wrds = ["end", 'work', "play", "start", "walk", "look", "open", "rain", "learn", "clean"]
+past_wrds = []
+for i in wrds:
+    x = i + "ed"
+    past_wrds.append(x)
+print(past_wrds)
+
+#Below are a set of scores that students have received in the past semester. Write code to determine how many are 90 or above and assign that result to the value a_scores.
+
+scores = "67 80 90 78 93 20 79 89 96 97 92 88 79 68 58 90 98 100 79 74 83 88 80 86 85 70 90 100"
+scores_split = scores.split(" ")
+a_scores = 0
+for x in scores_split:
+    x = float(x)
+    if x >= 90:
+        a_scores += 1
+
+print(a_scores)
+
+#Write code that uses the string stored in org and creates an acronym which is assigned to the variable acro. Only the first letter of each word should be used, each letter in the acronym should be a capital letter, and there should be nothing to separate the letters of the acronym. Words that should not be included in the acronym are stored in the list stopwords. For example, if org was assigned the string “hello to world” then the resulting acronym should be “HW”.
+
+stopwords = ['to', 'a', 'for', 'by', 'an', 'am', 'the', 'so', 'it', 'and', "The"]
+org = "The organization for health, safety, and education"
+stopwords = set(w.upper() for w in stopwords)
+acro = ''.join(i[0] for i in org.upper().split(' ') if i not in stopwords)
+
+#Write code that uses the string stored in sent and creates an acronym which is assigned to the variable acro. The first two letters of each word should be used, each letter in the acronym should be a capital letter, and each element of the acronym should be separated by a “. ” (dot and space). Words that should not be included in the acronym are stored in the list stopwords. For example, if sent was assigned the string “height and ewok wonder” then the resulting acronym should be “HE. EW. WO”.
+
+stopwords = ['to', 'a', 'for', 'by', 'an', 'am', 'the', 'so', 'it', 'and', 'The']
+sent = "The water earth and air are vital"
+
+acro = '. '.join(word[:2].upper() for word in sent.split() if word not in stopwords)
+print(acro)
+
+#A palindrome is a phrase that, if reversed, would read the exact same. Write code that checks if p_phrase is a palindrome by reversing it and then checking if the reversed version is equal to the original. Assign the reversed version of p_phrase to the variable r_phrase so that we can check your work.
+
+p_phrase = "was it a car or a cat I saw"
+r_phrase = p_phrase[::-1]
+
+
+#Provided is a list of data about a store’s inventory where each item in the list represents the name of an item, how much is in stock, and how much it costs. Print out each item in the list with the same formatting, using the .format method (not string concatenation). For example, the first print statment should read The store has 12 shoes, each for 29.99 USD.
+
+inventory = ["shoes, 12, 29.99", "shirts, 20, 9.99", "sweatpants, 25, 15.00", "scarves, 13, 7.75"]
+for item in inventory:
+    item_desc, number, cost = item.split(", ")
+    print("The store has {} {}, each for {} USD.".format(number, item_desc, cost))
+
+#Opening a file and having it be a variable
+
+fileref = open("olympics.txt", "r")
+## other code here that refers to variable fileref
+fileref.close()
+
+#Using the file school_prompt2.txt, find the number of characters in the file and assign that value to the variable num_char.
+
+fileref = open("school_prompt2.txt","r")
+num_char = 0
+for i in fileref:
+    num_char += len(i)
+fileref.close()
+
+#Find the number of lines in the file, travel_plans2.txt, and assign it to the variable num_lines
+
+fileref = open("travel_plans2.txt","r")
+num_lines = 0
+for i in fileref:
+    num_lines += 1
+fileref.close()
+
+#To process all of our olypmics data, we will use a for loop to iterate over the lines of the file. Using the split method, we can break each line into a list containing all the fields of interest about the athlete. We can then take the values corresponding to name, team and event to construct a simple sentence.
+
+olypmicsfile = open("olypmics.txt", "r")
+
+for aline in olypmicsfile.readlines():
+    values = aline.split(",")
+    print(values[0], "is from", values[3], "and is on the roster for", values[4])
+
+olypmicsfile.close()
+
+#Recipe for Reading and Processing a File
+Here’s a foolproof recipe for processing the contents of a text file. If you’ve fully digested the previous sections, you’ll understand that there are other options as well. Some of those options are preferable for some situations, and some are preferred by python programmers for efficiency reasons. In this course, though, you can always succeed by following this recipe.
+
+#1. Open the file using with and open.
+
+#2. Use .readlines() to get a list of the lines of text in the file.
+
+#3. Use a for loop to iterate through the strings in the list, each being one line from the file. On each iteration, process that line of text
+
+#4. When you are done extracting data from the file, continue writing your code outside of the indentation. Using with will automatically close the file once the program exits the with block.
+
+fname = "yourfile.txt"
+with open(fname, 'r') as fileref:         # step 1
+    lines = fileref.readlines()           # step 2
+    for lin in lines:                     # step 3
+        #some code that references the variable lin
+#some other code not relying on fileref   # step 4
+However, this will not be good to use when you are working with large data. Imagine working with a datafile that has 1000 rows of data. It would take a long time to read in all the data and then if you had to iterate over it, even more time would be necessary. This would be a case where programmers prefer another option for efficiency reasons.
+
+This option involves iterating over the file itself while still iterating over each line in the file:
+
+fname = "yourfile.txt"
+with open(fname, 'r') as fileref:         # step 1
+    for lin in fileref:                   # step 2
+        ## some code that reference the variable lin
+#some other code not relying on fileref   # step 3
+
+
+#Writing into a file
+
+filename = "squared_numbers.txt"
+outfile = open(filename, "w")
+
+for number in range(1, 13):
+    square = number * number
+    outfile.write(str(square) + "\n")
+
+outfile.close()
+
+infile = open(filename, "r")
+print(infile.read()[:10])
+infile.close()
+
+#Writing to a .csv file
+
+olympians = [("John Aalberg", 31, "Cross Country Skiing"),
+             ("Minna Maarit Aalto", 30, "Sailing"),
+             ("Win Valdemar Aaltonen", 54, "Art Competitions"),
+             ("Wakako Abe", 18, "Cycling")]
+
+outfile = open("reduced_olympics.csv", "w")
+# output the header row
+outfile.write('Name,Age,Sport')
+outfile.write('\n')
+# output each of the rows:
+for olympian in olympians:
+    row_string = '{},{},{}'.format(olympian[0], olympian[1], olympian[2])
+    outfile.write(row_string)
+    outfile.write('\n')
+outfile.close()
+
+#There are a few things worth noting in the code above.
+
+#First, using .format() makes it really clear what we’re doing when we create the variable row_string. We are making a comma separated set of values; the {} curly braces indicated where to substitute in the actual values. The equivalent string concatenation would be very hard to read. An alternative, also clear way to do it would be with the .join method: row_string = ','.join(olympian[0], olympian[1], olympian[2]).
+
+#Second, unlike the print statement, remember that the .write() method on a file object does not automatically insert a newline. Instead, we have to explicitly add the character \n at the end of each line.
+
+#Third, we have to explicitly refer to each of the elements of olympian when building the string to write. Note that just putting .format(olympian) wouldn’t work because the interpreter would see only one value (a tuple) when it was expecting three values to try to substitute into the string template. Later in the book we will see that python provides an advanced technique for automatically unpacking the three values from the tuple, with .format(*olympian).
+
+#As described previously, if one or more columns contain text, and that text could contain commas, we need to do something to distinguish a comma in the text from a comma that is separating different values (cells in the table). If we want to enclose each value in double quotes, it can start to get a little tricky, because we will need to have the double quote character inside the string output. But it is doable. Indeed, one reason Python allows strings to be delimited with either single quotes or double quotes is so that one can be used to delimit the string and the other can be a character in the string. If you get to the point where you need to quote all of the values, we recommend learning to use python’s csv module.
+
+#Using the text file studentdata.txt write a program that prints out the names of students that have more than six quiz scores.
+
+f = open("studentdata.txt", "r")
+
+for aline in f:
+    items = aline.split()
+    if len(items[1:]) > 6:
+        print(items[0])
+
+f.close()
+
+#Create a list called destination using the data stored in travel_plans.txt. Each element of the list should contain a line from the file that lists a country and cities inside that country. Hint: each line that has this information also has a colon : in it.
+
+f = open('travel_plans.txt')
+destination = []
+for line in f:
+    if ':' in line:
+        destination.append(line)
+        
+        
+#The textfile, travel_plans.txt, contains the summer travel plans for someone with some commentary. Find the total number of characters in the file and save to the variable num.
+
+fileref = open("travel_plans.txt","r")
+num = 0
+for i in fileref:
+    num += len(i)
+fileref.close()
+
+
+#We have provided a file called emotion_words.txt that contains lines of words that describe emotions. Find the total number of words in the file and assign this value to the variable num_words.
+
+num_words = 0
+fileref = "emotion_words.txt"
+
+with open(fileref, 'r') as file:
+    for line in file:
+        num_words += len(line.split())
+        
+#Assign to the variable num_lines the number of lines in the file school_prompt.txt.
+
+fname = "school_prompt.txt"
+num_lines = 0
+with open(fname, 'r') as f:
+    for line in f:
+        num_lines += 1
+        
+#Assign the first 30 characters of school_prompt.txt as a string to the variable beginning_chars.
+
+fname = "school_prompt.txt"
+with open(fname, 'r') as f:
+    beginning_chars = f.read(30)
+    
+#Using the file school_prompt.txt, assign the third word of every line to a list called three.
+
+three = []
+
+with open('school_prompt.txt', 'r') as f:
+    three = [line.split()[2] for line in f]
+    print(three)
+    
+#Create a list called emotions that contains the first word of every line in emotion_words.txt.
+
+fileref = open ("emotion_words.txt","r")
+line = fileref.readlines()
+emotions = []
+for words in line:
+    word = words.split()
+    emotions.append(word[0])
+print (emotions)
+
+#Using the file school_prompt.txt, if the character ‘p’ is in a word, then add the word to a list called p_words
+
+file=open("school_prompt.txt","r")
+p_words=[]
+file=file.read()
+wordlist=file.split()
+for i in wordlist:
+    if 'p' in i:
+        p_words.append(i)
+#Read in the contents of the file SP500.txt which has monthly data for 2016 and 2017 about the S&P 500 closing prices as well as some other financial indicators, including the “Long Term Interest Rate”, which is interest rate paid on 10-year U.S. government bonds.
+
+#Write a program that computes the average closing price (the second column, labeled SP500) and the highest long-term interest rate. Both should be computed only for the period from June 2016 through May 2017. Save the results in the variables mean_SP and max_interest
+
+begin_date = "6/1/2016"
+end_date = "5/1/2017"
+SP = 'SP500'
+Rate = 'Long Interest Rate'
+
+with open('SP500.txt','r') as f:
+    h = f.readline()
+    line = f.readlines()
+hlist = h.split(',')
+sums = []
+lst =[]
+in_date = 0
+for l in line:
+    lina = l.split(',')
+    now_date = lina[hlist.index('Date')]
+    if (now_date == begin_date) or (in_date == 1):
+        sums.append(float(lina[hlist.index(SP)]))
+        lst.append(float(lina[hlist.index(Rate)]))
+        in_date = (0 if (now_date == end_date) else 1)
+mean_SP = sum(sums) / len(sums)
+max_interest =  max(lst)
+
+
+
+
+
+
+
+
+
