@@ -1100,9 +1100,666 @@ max_interest =  max(lst)
 
 
 
+#An example of a dictionary
+
+medals = {"gold": 33, "silver": 17, "bronze":12}
+
+
+# Update the value for “Phelps” in the dictionary swimmers to include his medals from the Rio Olympics by adding 5 to the current value (Phelps will now have 28 total medals). Do not rewrite the dictionary.
+
+swimmers = {'Manuel':4, 'Lochte':12, 'Adrian':7, 'Ledecky':5, 'Dirado':4, 'Phelps':23}
+
+swimmers['Phelps'] = swimmers['Phelps'] + 5
+
+#Dictionary and keys example
+
+inventory = {'apples': 430, 'bananas': 312, 'oranges': 525, 'pears': 217}
+
+for akey in inventory.keys():     # the order in which we get the keys is not defined
+    print("Got key", akey, "which maps to value", inventory[akey])
+
+ks = list(inventory.keys())
+print(ks)
+
+#Another example
+
+inventory = {'apples': 430, 'bananas': 312, 'oranges': 525, 'pears': 217}
+
+print(list(inventory.values()))
+print(list(inventory.items()))
+
+for k in inventory:
+    print("Got",k,"that maps to",inventory[k])
+    
+ #Testing is a key is in the dictionary using "in" and "not in"
+ 
+ inventory = {'apples': 430, 'bananas': 312, 'oranges': 525, 'pears': 217}
+print('apples' in inventory)
+print('cherries' in inventory)
+
+if 'bananas' in inventory:
+    print(inventory['bananas'])
+else:
+    print("We have no bananas")
+
+#The get method allows us to access the value associated with a key, similar to the [ ] operator. The important difference is that get will not cause a runtime error if the key is not present. It will instead return None. There exists a variation of get that allows a second parameter that serves as an alternative return value in the case where the key is not present. This can be seen in the final example below. In this case, since “cherries” is not a key, return 0 (instead of None).
+
+inventory = {'apples': 430, 'bananas': 312, 'oranges': 525, 'pears': 217}
+
+print(inventory.get("apples"))
+print(inventory.get("cherries"))
+
+print(inventory.get("cherries",0))
+
+#Because dictionaries are mutable, you need to be aware of aliasing (as we saw with lists). Whenever two variables refer to the same dictionary object, changes to one affect the other. For example, opposites is a dictionary that contains pairs of opposites.
+
+opposites = {'up': 'down', 'right': 'wrong', 'true': 'false'}
+alias = opposites
+
+print(alias is opposites)
+
+alias['right'] = 'left'
+print(opposites['right'])
+
+#Counting how many T's are in the txt file
+
+f = open('scarlet.txt', 'r')
+txt = f.read()
+# now txt is one long string containing all the characters
+t_count = 0 #initialize the accumulator variable
+for c in txt:
+    if c == 't':
+        t_count = t_count + 1   #increment the counter
+print("t: " + str(t_count) + " occurrences")
+
+#Counting howmany T's and S's are in the txt file
+
+f = open('scarlet.txt', 'r')
+txt = f.read()
+# now txt is one long string containing all the characters
+t_count = 0 #initialize the accumulator variable
+s_count = 0 # initialize the s counter accumulator as well
+for c in txt:
+    if c == 't':
+        t_count = t_count + 1   #increment the t counter
+    elif c == 's':
+        s_count = s_count + 1
+print("t: " + str(t_count) + " occurrences")
+print("s: " + str(s_count) + " occurrences")
+
+#Counting out all occurances of characters in the txt file
+
+f = open('scarlet.txt', 'r')
+txt = f.read()
+# now txt is one long string containing all the characters
+letter_counts = {} # start with an empty dictionary
+for c in txt:
+    if c not in letter_counts:
+        # we have not seen this character before, so initialize a counter for it
+        letter_counts[c] = 0
+
+    #whether we've seen it before or not, increment its counter
+    letter_counts[c] = letter_counts[c] + 1
+
+for c in letter_counts.keys():
+    print(c + ": " + str(letter_counts[c]) + " occurrences")
+    
+    
+#Provided is a string saved to the variable name sentence. Split the string into a list of words, then create a dictionary that contains each word and the number of times it occurs. Save this dictionary to the variable name word_counts.
+
+sentence = "The dog chased the rabbit into the forest but the rabbit was too quick."
+words = sentence.split()
+word_counts = {}
+for word in words:
+    if word not in word_counts:
+        word_counts[word] = 0
+    word_counts[word] = word_counts[word] + 1
+
+#Create a dictionary called char_d from the string stri, so that the key is a character and the value is how many times it occurs.
+
+stri = "what can I do"
+char_d = {}
+for c in stri:
+    if c not in char_d:
+        char_d[c] = 0
+    char_d[c] = char_d[c] + 1
+    
+#Calculating a Scrabble score in a txt file
+
+f = open('scarlet2.txt', 'r')
+txt = f.read()
+# now txt is one long string containing all the characters
+x = {} # start with an empty dictionary
+for c in txt:
+    if c not in x:
+        # we have not seen this character before, so initialize a counter for it
+        x[c] = 0
+
+    #whether we've seen it before or not, increment its counter
+    x[c] = x[c] + 1
+
+letter_values = {'a': 1, 'b': 3, 'c': 3, 'd': 2, 'e': 1, 'f':4, 'g': 2, 'h':4, 'i':1, 'j':8, 'k':5, 'l':1, 'm':3, 'n':1, 'o':1, 'p':3, 'q':10, 'r':1, 's':1, 't':1, 'u':1, 'v':4, 'w':4, 'x':8, 'y':4, 'z':10}
+
+tot = 0
+for y in x:
+    if y in letter_values:
+        tot = tot + letter_values[y] * x[y]
+
+print(tot)
+
+#The dictionary travel contains the number of countries within each continent that Jackie has traveled to. Find the total number of countries that Jackie has been to, and save this number to the variable name total. Do not hard code this
+
+travel = {"North America": 2, "Europe": 8, "South America": 3, "Asia": 4, "Africa":1, "Antarctica": 0, "Australia": 1}
+total = 0
+for c in travel:
+    total = total + travel[c]
+    
+#schedule is a dictionary where a class name is a key and its value is how many credits it was worth. Go through and accumulate the total number of credits that have been earned so far and assign that to the variable total_credits. Do not hardcode.
+
+schedule = {"UARTS 150": 3, "SPANISH 103": 4, "ENGLISH 125": 4, "SI 110": 4, "ENS 356": 2, "WOMENSTD 240": 4, "SI 106": 4, "BIO 118": 3, "SPANISH 231": 4, "PSYCH 111": 4, "LING 111": 3, "SPANISH 232": 4, "STATS 250": 4, "SI 206": 4, "COGSCI 200": 4, "AMCULT 202": 4, "ANTHRO 101": 4}
+total_credits = 0
+for c in schedule:
+    total_credits = total_credits + schedule[c]
+
+#Write a program that finds the key in a dictionary that has the maximum value. If two keys have the same maximum value, it’s OK to print out either one. Fill in the skeleton code
+
+d = {'a': 194, 'b': 54, 'c':34, 'd': 44, 'e': 312, 'full':31}
+
+ks = d.keys()
+best_key_so_far = list(ks)[0]  # Have to turn ks into a real list before using [] to select an item
+for k in ks:
+    if d[k] > d[best_key_so_far]:
+        best_key_so_far = k
+
+print("key " + best_key_so_far + " has the highest value, " + str(d[best_key_so_far]))
+
+
+# Create a dictionary called d that keeps track of all the characters in the string placement and notes how many times each character was seen. Then, find the key with the lowest value in this dictionary and assign that key to min_value.
+
+placement = "Beaches are cool places to visit in spring however the Mackinaw Bridge is near. Most people visit Mackinaw later since the island is a cool place to explore."
+
+d = {}
+
+for c in placement:
+    if c not in d:
+        d[c] = 0
+    d[c] = d[c] +1
+
+keys = list(d.keys())
+min_value = keys[0]
+
+for key in keys:
+    if d[key] < d[min_value]:
+        min_value = key
+        
+#Create a dictionary called lett_d that keeps track of all of the characters in the string product and notes how many times each character was seen. Then, find the key with the highest value in this dictionary and assign that key to max_value.
+
+product = "iphone and android phones"
+
+lett_d = {}
+
+for c in product:
+    if c not in lett_d:
+        lett_d[c] = 0
+    lett_d[c] = lett_d[c] +1
+
+keys = list(lett_d.keys())
+max_value = keys[0]
+
+for key in keys:
+    if lett_d[key] > lett_d[max_value]:
+        max_value = key
+
+#When to use a dictionary: Now that you have experience using lists and dictionaries, you will have to decide which one is best to use in each situation. The following guidelines will help you recognize when a dictionary will be beneficial:
+
+#When a piece of data consists of a set of properties of a single item, a dictionary is often better. You could try to keep track mentally that the zip code property is at index 2 in a list, but your code will be easier to read and you will make fewer mistakes if you can look up mydiction[‘zipcode’] than if you look up mylst[2].
+
+#When you have a collection of data pairs, and you will often have to look up one of the pairs based on its first value, it is better to use a dictionary than a list of (key, value) tuples. With a dictionary, you can find the value for any (key, value) tuple by looking up the key. With a list of tuples you would need to iterate through the list, examining each pair to see if it had the key that you want.
+
+#On the other hand, if you will have a collection of data pairs where multiple pairs share the same first data element, then you can’t use a dictionary, because a dictionary requires all the keys to be distinct from each other.
 
 
 
+#Write a program that asks the user for a sentence in English and then translates that sentence to Pirate.
 
+pirate = {}
+pirate['sir'] = 'matey'
+pirate['hotel'] = 'fleabag inn'
+pirate['student'] = 'swabbie'
+pirate['boy'] = 'matey'
+pirate['restaurant'] = 'galley'
+#and so on
+
+sentence = input("Please enter a sentence in English")
+
+psentence = []
+words = sentence.split()
+for aword in words:
+    if aword in pirate:
+        psentence.append(pirate[aword])
+    else:
+        psentence.append(aword)
+
+print(" ".join(psentence))
+
+#Write a program that finds the most used 7 letter word in scarlet3.txt.
+
+f = open('scarlet3.txt', 'r')
+contents = f.read()
+d = {}
+
+for w in contents.split():
+    if len(w) == 7:
+        if w not in d:
+            d[w] = 1
+        else:
+            d[w] = d[w] + 1
+
+dkeys = d.keys()
+most_used = dkeys[0]
+for k in dkeys:
+    if d[k] > d[most_used]:
+        most_used = k
+
+print("The most used word is '"+most_used+"', which is used "+str(d[most_used])+" times")
+
+#Write a program that allows the user to enter a string. It then prints a table of the letters of the alphabet in alphabetical order which occur in the string together with the number of times each letter occurs. Case should be ignored.
+
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+
+letter_count = {} # empty dictionary
+for char in alphabet:
+    if char in alphabet: # ignore any punctuation, numbers, etc
+        if char in letter_count:
+            letter_count[char] = letter_count[char] + 1
+        else:
+            letter_count[char] = 1
+
+keys = letter_count.keys()
+for char in sorted(keys):
+    print(char, letter_count[char])
+    
+#The dictionary Junior shows a schedule for a junior year semester. The key is the course name and the value is the number of credits. Find the total number of credits taken this semester and assign it to the variable credits. Do not hardcode this – use dictionary accumulation!
+
+Junior = {'SI 206':4, 'SI 310':4, 'BL 300':3, 'TO 313':3, 'BCOM 350':1, 'MO 300':3}
+credits = 0
+for course in Junior:
+    credits = credits + Junior[course]
+    
+#Create a dictionary, freq, that displays each character in string str1 as the key and its frequency as the value.
+
+str1 = "peter piper picked a peck of pickled peppers"
+freq = {}
+
+for c in str1:
+    if c not in freq:
+        freq[c] = 0
+    freq[c] = freq[c] + 1
+
+#Provided is a string saved to the variable name s1. Create a dictionary named counts that contains each letter in s1 and the number of times it occurs.
+
+s1 = "hello"
+counts = {}
+
+for c in s1:
+    if c not in counts:
+        counts[c] = 0
+    counts[c] = counts[c] + 1
+    
+#Create a dictionary, freq_words, that contains each word in string str1 as the key and its frequency as the value.
+
+str1 = "I wish I wish with all my heart to fly with dragons in a land apart"
+words = str1.split()
+freq_words = {}
+for c in words:
+    if c not in freq_words:
+        freq_words[c] = 0
+    freq_words[c] = freq_words[c] + 1
+for y in freq_words:
+    print(freq_words[y], y)
+    
+#Create a dictionary called wrd_d from the string sent, so that the key is a word and the value is how many times you have seen that word.
+
+sent = "Singing in the rain and playing in the rain are two entirely different situations but both can be good"
+words = sent.split()
+wrd_d = {}
+for c in words:
+    if c not in wrd_d:
+        wrd_d[c] = 0
+    wrd_d[c] = wrd_d[c] + 1
+for y in wrd_d:
+    print(wrd_d[y], y)
+    
+#Create the dictionary characters that shows each character from the string sally and its frequency. Then, find the most frequent letter based on the dictionary. Assign this letter to the variable best_char.
+
+sally = "sally sells sea shells by the sea shore"
+
+characters = {}
+
+for c in sally:
+    if c not in characters:
+        characters[c] = 0
+    characters[c] = characters[c] + 1
+keys = list(characters.keys())
+
+best_char = keys[0]
+for key in keys:
+    if characters[key] > characters[best_char]:
+        best_char = key
+        
+#Find the least frequent letter. Create the dictionary characters that shows each character from string sally and its frequency. Then, find the least frequent letter in the string and assign the letter to the variable worst_char.
+
+sally = "sally sells sea shells by the sea shore and by the road"
+
+characters = {}
+
+for c in sally:
+    if c not in characters:
+        characters[c] = 0
+    characters[c] = characters[c] + 1
+keys = list(characters.keys())
+
+worst_char = keys[0]
+for key in keys:
+    if characters[key] < characters[worst_char]:
+        worst_char = key
+        
+#Create a dictionary named letter_counts that contains each letter and the number of times it occurs in string1. Challenge: Letters should not be counted separately as upper-case and lower-case. Intead, all of them should be counted as lower-case.
+
+string1 = "There is a tide in the affairs of men, Which taken at the flood, leads on to fortune. Omitted, all the voyage of their life is bound in shallows and in miseries. On such a full sea are we now afloat. And we must take the current when it serves, or lose our ventures."
+words = string1.lower()
+letter_counts = {}
+for c in words:
+    if c not in letter_counts:
+        letter_counts[c] = 0
+    letter_counts[c] = letter_counts[c] + 1
+    
+
+#Create a dictionary called low_d that keeps track of all the characters in the string p and notes how many times each character was seen. Make sure that there are no repeats of characters as keys, such that “T” and “t” are both seen as a “t” for example.
+
+p = "Summer is a great time to go outside. You have to be careful of the sun though because of the heat."
+words = p.lower()
+low_d = {}
+for c in words:
+    if c not in low_d:
+        low_d[c] = 0
+    low_d[c] = low_d[c] + 1    
+    
+
+
+#Using Functions:
+
+def hello2(s):
+    print("Hello " + s)
+    print("Glad to meet you")
+
+hello2("Iman" + " and Jackie")
+hello2("Class " * 3)
+
+#Function to find square of 10
+
+def square(x):
+    y = x * x
+    return y
+
+toSquare = 10
+result = square(toSquare)
+print("The result of {} squared is {}.".format(toSquare, result))
+
+#A return statement, once executed, immediately terminates execution of a function, even if it is not the last statement in the function. In the following code, when line 3 executes, the value 5 is returned and assigned to the variable x, then printed. Lines 4 and 5 never execute. Run the following code and try making some modifications of it to make sure you understand why “there” and 10 never print out.
+
+#Bonus challenge for studying: After you look at the explanation below, stop looking at the code – just the description of the function above it, and try to write the code yourself! Then test it on different lists and make sure that it works. But read the explanation first, so you can be sure you have a solid grasp on these function mechanics.
+
+#First, an English plan for this new function to define called longer_than_five:
+
+#You’ll want to pass in a list of strings (representing people’s first names) to the function.
+
+#You’ll want to iterate over all the items in the list, each of the strings.
+
+#As soon as you get to one name that is longer than five letters, you know the function should return True – yes, there is at least one name longer than five letters!
+
+#And if you go through the whole list and there was no name longer than five letters, then the function should return False.
+
+def longer_than_five(list_of_names):
+    for name in list_of_names: # iterate over the list to look at each name
+        if len(name) > 5: # as soon as you see a name longer than 5 letters,
+            return True # then return True!
+            # If Python executes that return statement, the function is over and the rest of the code will not run -- you already have your answer!
+    return False # You will only get to this line if you
+    # iterated over the whole list and did not get a name where
+    # the if expression evaluated to True, so at this point, it's correct to return False!
+
+# Here are a couple sample calls to the function with different lists of names. Try running this code in Codelens a few times and make sure you understand exactly what is happening.
+
+list1 = ["Sam","Tera","Sal","Amita"]
+list2 = ["Rey","Ayo","Lauren","Natalie"]
+
+print(longer_than_five(list1))
+print(longer_than_five(list2))
+
+#Write a function named same that takes a string as input, and simply returns that string.
+
+def same(x):
+    return x
+    
+same("hello")
+
+#Write a function called same_thing that returns the parameter, unchanged.
+
+def same_thing(x):
+    return x
+    
+same_thing(5)
+
+#Write a function called subtract_three that takes an integer or any number as input, and returns that number minus three.
+
+def subtract_three(x):
+    y = x - 3
+    return y
+    
+subtract_three(5
+
+#Write a function named intro that takes a string as input. Given the string “Becky” as input, the function should return: “Hello, my name is Becky and I love SI 106.”
+
+def intro(x):
+    y = "Hello, my name is " + x + " and I love SI 106."
+    return y
+    
+intro("Becky")
+
+#Function to count length
+
+#Well, actually, not that much harder. Now that we know how to define functions, we could define len ourselves if it did not exist. Previously, we have used the accumlator pattern to count the number of lines in a file. Let’s use that same idea and just wrap it in a function definition. We’ll call it mylen to distinguish it from the real len which already exists. We actually could call it len, but that wouldn’t be a very good idea, because it would replace the original len function, and our implementation may not be a very good one.
+
+def mylen(seq):
+    c = 0 # initialize count variable to 0
+    for _ in seq:
+        c = c + 1   # increment the counter for each item in seq
+    return c
+
+print(mylen("hello"))
+print(mylen([1, 2, 7]))
+
+#Write a function named total that takes a list of integers as input, and returns the total value of all those integers added together.
+
+def total(lst):
+    tot = 0
+    for num in lst:
+        tot = tot + num
+    return tot
+    
+#Let’s use composition to build up a little more useful function. Recall from the dictionaries chapter that we had a two-step process for finding the letter that appears most frequently in a text string:
+
+#Accumulate a dictionary with letters as keys and counts as values. See example.
+
+#Find the best key from that dictionary. See example.
+
+#We can make functions for each of those and then compose them into a single function that finds the most common letter.   
+
+def most_common_letter(s):
+    frequencies = count_freqs(s)
+    return best_key(frequencies)
+
+def count_freqs(st):
+    d = {}
+    for c in st:
+        if c not in d:
+             d[c] = 0
+        d[c] = d[c] + 1
+    return d
+
+def best_key(dictionary):
+    ks = dictionary.keys()
+    best_key_so_far = list(ks)[0]  # Have to turn ks into a real list before using [] to select an item
+    for k in ks:
+        if dictionary[k] > dictionary[best_key_so_far]:
+            best_key_so_far = k
+    return best_key_so_far
+
+print(most_common_letter("abbbbbbbbbbbccccddddd"))
+
+#Write two functions, one called addit and one called mult. addit takes one number as an input and adds 5. mult takes one number as an input, and multiplies that input by whatever is returned by addit, and then returns the result.
+
+def mult(x):
+    return x*addit(x)
+
+def addit(x):
+    return x+5
+    
+#Write a function that will return the number of digits in an integer.
+
+def numDigits(n):
+    n_str = str(n)
+    return len(n_str)
+
+
+print(numDigits(50))
+print(numDigits(20000))
+print(numDigits(1))
+
+#Write a function that reverses its string argument.
+
+def reverse(input):
+    rev_string = input[::-1]
+    return rev_string
+
+#Write a function that mirrors its string argument, generating a string containing the original string and the string backwards.
+
+def reverse(mystr):
+    reversed = ''
+    for char in mystr:
+        reversed = char + reversed
+    return reversed
+
+def mirror(mystr):
+    return mystr + reverse(mystr)
+
+assert mirror('good') == 'gooddoog'
+assert mirror('Python') == 'PythonnohtyP'
+assert mirror('') == ''
+assert mirror('a') == 'aa'
+
+#Although Python provides us with many list methods, it is good practice and very instructive to think about how they are implemented. Implement a Python function that works like the following:
+
+#count
+
+#in
+
+#reverse
+
+#index
+
+#insert
+
+def count(obj, lst):
+    count = 0
+    for e in lst:
+        if e == obj:
+            count = count + 1
+    return count
+
+def is_in(obj, lst):  # cannot be called in() because in is a reserved keyword
+    for e in lst:
+        if e == obj:
+            return True
+    return False
+
+def reverse(lst):
+    reversed = []
+    for i in range(len(lst)-1, -1, -1): # step through the original list backwards
+        reversed.append(lst[i])
+    return reversed
+
+def index(obj, lst):
+    for i in range(len(lst)):
+        if lst[i] == obj:
+            return i
+    return -1
+
+def insert(obj, index, lst):
+    newlst = []
+    for i in range(len(lst)):
+        if i == index:
+            newlst.append(obj)
+        newlst.append(lst[i])
+    return newlst
+
+lst = [0, 1, 1, 2, 2, 3, 4, 5, 6, 7, 8, 9]
+print(count(1, lst))
+print(is_in(4, lst))
+print(reverse(lst))
+print(index(2, lst))
+print(insert('cat', 4, lst))
+
+#Write a Python function that will take a the list of 100 random integers between 0 and 1000 and return the maximum value. (Note: there is a builtin function named max but pretend you cannot use it.)
+
+import random
+
+def max(lst):
+    max = 0
+    for e in lst:
+        if e > max:
+            max = e
+    return max
+
+lst = []
+for i in range(100):
+    lst.append(random.randint(0, 1000))
+
+print(max(lst))
+
+#Write a function sum_of_squares(xs) that computes the sum of the squares of the numbers in the list xs. For example, sum_of_squares([2, 3, 4]) should return 4+9+16 which is 29:
+
+import random
+xs = []
+for i in range(3):
+    xs.append(random.randint(0,50))
+
+def sum_of_squares(xs):
+    sum_of_squares=0  #mistake 1 : initialize sum first. you are making new sum variable in loop everytime. 
+    for i in (xs):
+        squared = i * i  #mistake 2 : ** is exponent and not multiply.
+        sum_of_squares += squared  #mistake 3
+    return sum_of_squares
+
+print (sum_of_squares(xs))
+
+#Write a function to count how many odd numbers are in a list.
+
+import random
+
+def countOdd(lst):
+    odd = 0
+    for e in lst:
+        if e % 2 != 0:
+            odd = odd + 1
+    return odd
+
+# make a random list to test the function
+lst = []
+for i in range(100):
+    lst.append(random.randint(0, 1000))
+
+print(countOdd(lst))
 
 
