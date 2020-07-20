@@ -1763,3 +1763,249 @@ for i in range(100):
 print(countOdd(lst))
 
 
+#Tuples
+
+julia = ("Julia", "Roberts", 1967, "Duplicity", 2009, "Actress", "Atlanta, Georgia")
+# or equivalently
+julia = "Julia", "Roberts", 1967, "Duplicity", 2009, "Actress", "Atlanta, Georgia"
+print(julia[4])
+
+
+#Multiple assignment with unpacking is particularly useful when you iterate through a list of tuples. You can unpack each tuple into several loop variables. For example:
+
+authors = [('Paul', 'Resnick'), ('Brad', 'Miller'), ('Lauren', 'Murphy')]
+for first_name, last_name in authors:
+    print("first name:", first_name, "last name:", last_name)
+    
+#We are now prepared to understand a more pythonic approach to enumerating items in a sequence. Python provides a built-in function enumerate. It takes a sequence as input and returns a sequence of tuples. In each tuple, the first element is an integer and the second is an item from the original sequence. (It actually produces an “iterable” rather than a list, but we can use it in a for loop as the sequence to iterate over.)
+
+fruits = ['apple', 'pear', 'apricot', 'cherry', 'peach']
+for item in enumerate(fruits):
+    print(item[0], item[1])
+
+#The pythonic way to consume the results of enumerate, however, is to unpack the tuples while iterating through them, so that the code is easier to understand.
+
+fruits = ['apple', 'pear', 'apricot', 'cherry', 'peach']
+for idx, fruit in enumerate(fruits):
+    print(idx, fruit)
+    
+#If you remember, the .items() dictionary method produces a sequence of tuples. Keeping this in mind, we have provided you a dictionary called pokemon. For every key value pair, append the key to the list p_names, and append the value to the list p_number. Do not use the .keys() or .values() methods.
+
+pokemon = {'Rattata': 19, 'Machop': 66, 'Seel': 86, 'Volbeat': 86, 'Solrock': 126}
+
+
+p_names = list()
+p_number = list()
+
+
+for k, v in pokemon.items():
+    p_names.append(k)
+    p_number.append(v)
+
+
+print(p_names)
+print(p_number)
+
+#For example, we could write a function that returns both the area and the circumference of a circle of radius r.
+
+def circleInfo(r):
+    """ Return (circumference, area) of a circle of radius r """
+    c = 2 * 3.14159 * r
+    a = 3.14159 * r * r
+    return (c, a)
+
+print(circleInfo(10))
+
+#Define a function called information that takes as input, the variables name, birth_year, fav_color, and hometown. It should return a tuple of these variables in this order.
+
+def information(name,birth_year,fav_color,hometown):
+    a = name
+    b = birth_year
+    c = fav_color
+    d = hometown
+    return a, b, c ,d
+
+#Define a function called info with the following required parameters: name, age, birth_year, year_in_college, and hometown. The function should return a tuple that contains all the inputted information.
+
+def info(name, age, birth_year, year_in_college, hometown):
+    a = name
+    b = age
+    c = birth_year
+    d = year_in_college
+    e = hometown
+    return a, b, c ,d, e
+    
+    #Given is the dictionary, gold, which shows the country and the number of gold medals they have earned so far in the 2016 Olympics. Create a list, num_medals, that contains only the number of medals for each country. You must use the .items() method. Note: The .items() method provides a list of tuples. Do not use .keys() method.
+    
+    gold = {'USA':31, 'Great Britain':19, 'China':19, 'Germany':13, 'Russia':12, 'Japan':10, 'France':8, 'Italy':8}
+num_medals=[]
+for i in gold.items():
+    num_medals.append(i[1])
+    
+#While Statement
+    
+#We can use the while loop to create any type of iteration we wish, including anything that we have previously done with a for loop. For example, the program in the previous section could be rewritten using while. Instead of relying on the range function to produce the numbers for our summation, we will need to produce them ourselves. To do this, we will create a variable called aNumber and initialize it to 1, the first number in the summation. Every iteration will add aNumber to the running total until all the values have been used. In order to control the iteration, we must create a boolean expression that evaluates to True as long as we want to keep adding values to our running total. In this case, as long as aNumber is less than or equal to the bound, we should keep going.
+
+#Here is a new version of the summation program that uses a while statement.
+
+def sumTo(aBound):
+    """ Return the sum of 1+2+3 ... n """
+
+    theSum  = 0
+    aNumber = 1
+    while aNumber <= aBound:
+        theSum = theSum + aNumber
+        aNumber = aNumber + 1
+    return theSum
+
+print(sumTo(4))
+
+print(sumTo(1000))
+
+#Write a while loop that is initialized at 0 and stops at 15. If the counter is an even number, append the counter to a list called eve_nums.
+
+count = 0
+
+eve_nums = []
+while count <= 15:
+    if count % 2 == 0:
+        eve_nums.append(count)
+    count = count + 1
+    
+#Below, we’ve provided a for loop that sums all the elements of list1. Write code that accomplishes the same task, but instead uses a while loop. Assign the accumulator variable to the name accum.
+
+list1 = [8, 3, 4, 5, 6, 7, 9]
+
+tot = 0
+for elem in list1:
+    tot = tot + elem
+
+idx = 0
+accum = 0
+while idx < len(list1):
+    accum = accum + list1[idx]
+    idx = idx + 1
+    
+#One very common pattern is called a listener loop. Inside the while loop there is a function call to get user input. The loop repeats indefinitely, until a particular input is received.
+
+theSum = 0
+x = -1
+while (x != 0):
+    x = int(input("next number to add up (enter 0 if no more numbers): "))
+    theSum = theSum + x
+
+print(theSum)
+
+#This pseudocode has no option to set moreItems to False, so it would run forever. In a grocery store, there’s a little plastic bar that you put after your last item to separate your groceries from those of the person behind you; that’s how the clerk knows you have no more items. We don’t have a “little plastic bar” data type in Python, so we’ll do the next best thing: we will use a price of zero to mean “this is my last item.” In this program, zero is a sentinel value, a value used to signal the end of the loop. Here’s the code:
+
+def checkout():
+    total = 0
+    count = 0
+    moreItems = True
+    while moreItems:
+        price = float(input('Enter price of item (0 when done): '))
+        if price != 0:
+            count = count + 1
+            total = total + price
+            print('Subtotal: $', total)
+        else:
+            moreItems = False
+    average = total / count
+    print('Total items:', count)
+    print('Total $', total)
+    print('Average price per item: $', average)
+
+checkout()
+
+#You can also use a while loop when you want to validate input; when you want to make sure the user has entered valid input for a prompt. Let’s say you want a function that asks a yes-or-no question. In this case, you want to make sure that the person using your program enters either a Y for yes or N for no (in either upper or lower case). Here is a program that uses a while loop to keep asking until it receives a valid answer. As a preview of coming attractions, it uses the upper() method which is described in String Methods to convert a string to upper case. When you run the following code, try typing something other than Y or N to see how the code reacts:
+
+def get_yes_or_no(message):
+    valid_input = False
+    while not valid_input:
+        answer = input(message)
+        answer = answer.upper() # convert to upper case
+        if answer == 'Y' or answer == 'N':
+            valid_input = True
+        else:
+            print('Please enter Y for yes or N for no.')
+    return answer
+
+response = get_yes_or_no('Do you like lima beans? Y)es or N)o: ')
+if response == 'Y':
+    print('Great! They are very healthy.')
+else:
+    print('Too bad. If cooked right, they are quite tasty.')
+    
+#Break and Continue
+
+while True:
+    print("this phrase will always print")
+    break
+    print("Does this phrase print?")
+
+print("We are done with the while loop.")
+
+x = 0
+while x < 10:
+    print("we are incrementing x")
+    if x % 2 == 0:
+        x += 3
+        continue
+    if x % 3 == 0:
+        x += 5
+    x += 1
+print("Done with our loop! X has the value: " + str(x))
+
+#Write a function, sublist, that takes in a list of numbers as the parameter. In the function, use a while loop to return a sublist of the input list. The sublist should contain the same values of the original list up until it reaches the number 5 (it should not contain the number 5).
+
+def sublist(lst):
+    counter = 0
+    new =[]
+    while counter<len(lst):
+        if lst[counter] == 5:
+           return new
+        else:
+            new.append(lst[counter])
+        counter+=1
+    return new
+    
+#Write a function called check_nums that takes a list as its parameter, and contains a while loop that only stops once the element of the list is the number 7. What is returned is a list of all of the numbers up until it reaches 7.
+
+def check_nums(lst):
+    counter = 0
+    new =[]
+    while counter<len(lst):
+        if lst[counter] == 7:
+           return new
+        else:
+            new.append(lst[counter])
+        counter+=1
+    return new
+
+#Write a function, sublist, that takes in a list of strings as the parameter. In the function, use a while loop to return a sublist of the input list. The sublist should contain the same values of the original list up until it reaches the string “STOP” (it should not contain the string “STOP”).
+
+def sublist(lst):
+    counter = 0
+    new = []
+    while counter<len(lst):
+        if lst[counter] == "STOP":
+           return new
+        else:
+            new.append(lst[counter])
+        counter+=1
+    return new
+    
+#Write a function called stop_at_z that iterates through a list of strings. Using a while loop, append each string to a new list until the string that appears is “z”. The function should return the new list.
+
+def stop_at_z(lst):
+    counter = 0
+    new = []
+    while counter<len(lst):
+        if lst[counter] == "z":
+           return new
+        else:
+            new.append(lst[counter])
+        counter+=1
+    return new
+    
+    
