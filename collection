@@ -2009,3 +2009,355 @@ def stop_at_z(lst):
     return new
     
     
+# Write a function called str_mult that takes in a required string parameter and an optional integer parameter. The default value for the integer parameter should be 3. The function should return the string multiplied by the integer parameter.
+
+def str_mult(x = 1, y = 3):
+    return x * y
+
+print(str_mult(1))
+
+#Earlier you learned how to use the format method for strings, which allows you to structure strings like fill-in-the-blank sentences. Now that you’ve learned about optional and keyword parameters, we can introduce a new way to use the format method.
+
+#This other option is to specifically refer to keywords for interpolation values, like below.
+
+names_scores = [("Jack",[67,89,91]),("Emily",[72,95,42]),("Taylor",[83,92,86])]
+for name, scores in names_scores:
+    print("The scores {nm} got were: {s1},{s2},{s3}.".format(nm=name,s1=scores[0],s2=scores[1],s3=scores[2]))
+
+#Sometimes, you may want to use the .format method to insert the same value into a string multiple times. You can do this by simply passing the same string into the format method, assuming you have included {} s in the string everywhere you want to interpolate them. But you can also use positional passing references to do this! The order in which you pass arguments into the format method matters: the first one is argument 0, the second is argument 1, and so on.
+
+#For example,
+
+# this works
+names = ["Jack","Jill","Mary"]
+for n in names:
+    print("'{}!' she yelled. '{}! {}, {}!'".format(n,n,n,"say hello"))
+
+# but this also works!
+names = ["Jack","Jill","Mary"]
+for n in names:
+    print("'{0}!' she yelled. '{0}! {0}, {1}!'".format(n,"say hello"))
+    
+#Lambda
+
+def f(x):
+    return x - 1
+
+print(f)
+print(type(f))
+print(f(3))
+
+print(lambda x: x-2)
+print(type(lambda x: x-2))
+print((lambda x: x-2)(6))
+
+def last_char(s):
+    return s[-1]
+    
+    is equal to
+    
+last_char = (lambda s: s[-1])
+
+#Create a function called mult that has two parameters, the first is required and should be an integer, the second is an optional parameter that can either be a number or a string but whose default is 6. The function should return the first parameter multiplied by the second.
+
+def mult(a, b=6):
+    return a * b
+
+#The following function, greeting, does not work. Please fix the code so that it runs without error. This only requires one change in the definition of the function.
+
+def greeting(name, greeting="Hello ", excl="!"):
+    return greeting + name + excl
+
+print(greeting("Bob"))
+print(greeting(""))
+print(greeting("Bob", excl="!!!"))
+
+#Below is a function, sum, that does not work. Change the function definition so the code works. The function should still have a required parameter, intx, and an optional parameter, intz with a defualt value of 5.
+
+def sum(intx, intz=5):
+    return intz + intx
+    
+#Write a function, test, that takes in three parameters: a required integer, an optional boolean whose default value is True, and an optional dictionary, called dict1, whose default value is {2:3, 4:5, 6:8}. If the boolean parameter is True, the function should test to see if the integer is a key in the dictionary. The value of that key should then be returned. If the boolean parameter is False, return the boolean value “False”.
+
+def test(x, abool = True, dict1 = {2:3, 4:5, 6:8}):
+    return abool and dict1.get(x, False)
+    
+#Write a function called checkingIfIn that takes three parameters. The first is a required parameter, which should be a string. The second is an optional parameter called direction with a default value of True. The third is an optional parameter called d that has a default value of {'apple': 2, 'pear': 1, 'fruit': 19, 'orange': 5, 'banana': 3, 'grapes': 2, 'watermelon': 7}. Write the function checkingIfIn so that when the second parameter is True, it checks to see if the first parameter is a key in the third parameter; if it is, return True, otherwise return False.
+
+#But if the second paramter is False, then the function should check to see if the first parameter is not a key of the third. If it’s not, the function should return True in this case, and if it is, it should return False
+
+def checkingIfIn(a, direction = True, d = {'apple': 2, 'pear': 1, 'fruit': 19, 'orange': 5, 'banana': 3, 'grapes': 2, 'watermelon': 7}):
+    if direction == True:
+        if a in d:
+            return True 
+        else:
+            return False
+    else:
+        if a not in d:
+            return True
+        else:
+            return False
+#We have provided the function checkingIfIn such that if the first input parameter is in the third, dictionary, input parameter, then the function returns that value, and otherwise, it returns False. Follow the instructions in the active code window for specific variable assignmemts.
+
+def checkingIfIn(a, direction = True, d = {'apple': 2, 'pear': 1, 'fruit': 19, 'orange': 5, 'banana': 3, 'grapes': 2, 'watermelon': 7}):
+    if direction == True:
+        if a in d:
+            return d[a]
+        else:
+            return False
+    else:
+        if a not in d:
+            return True
+        else:
+            return d[a]
+
+# Call the function so that it returns False and assign that function call to the variable c_false
+c_false = checkingIfIn('peas')
+# Call the fucntion so that it returns True and assign it to the variable c_true
+c_true = checkingIfIn('apples', False, {'carrots': 1, 'peas': 9, 'potatos': 8, 'corn': 32, 'beans': 1})
+# Call the function so that the value of fruit is assigned to the variable fruit_ans
+fruit_ans= checkingIfIn('fruit')
+# Call the function using the first and third parameter so that the value 8 is assigned to the variable param_check
+param_check = checkingIfIn('potatos', False, {'carrots': 1, 'peas': 9, 'potatos': 8, 'corn': 32, 'beans': 1})
+
+#When we first introduced lists, we noted the existence of a method sort. When invoked on a list, the order of items in the list is changed. If no optional parameters are specified, the items are arranged in whatever the natural ordering is for the item type. For example, if the items are all integers, then smaller numbers go earlier in the list. If the items are all strings, they are arranged in alphabetic order.
+
+L1 = [1, 7, 4, -2, 3]
+L2 = ["Cherry", "Apple", "Blueberry"]
+
+L1.sort()
+print(L1)
+L2.sort()
+print(L2)
+
+#Reverse
+
+L2 = ["Cherry", "Apple", "Blueberry"]
+print(sorted(L2, reverse=True))
+
+#1. Sort the list, lst from largest to smallest. Save this new list to the variable lst_sorted.
+
+lst = [3, 5, 1, 6, 7, 2, 9, -2, 5]
+lst_sorted = (sorted(lst, reverse=True))
+
+#If you want to sort things in some order other than the “natural” or its reverse, you can provide an additional parameter, the key parameter. For example, suppose you want to sort a list of numbers based on their absolute value, so that -4 comes after 3? Or suppose you have a dictionary with strings as the keys and numbers as the values. Instead of sorting them in alphabetic order based on the keys, you might like to sort them in order based on their values.
+
+#First, let’s see an example, and then we’ll dive into how it works.
+
+#First, let’s define a function absolute that takes a number and returns its absolute value. (Actually, python provides a built-in function abs that does this, but we are going to define our own, for reasons that will be explained in a minute.)
+
+L1 = [1, 7, 4, -2, 3]
+
+def absolute(x):
+    if x >= 0:
+        return x
+    else:
+        return -x
+
+print(absolute(3))
+print(absolute(-119))
+
+for y in L1:
+    print(absolute(y))
+    
+#Now, we can pass the absolute function to sorted in order to specify that we want the items sorted in order of their absolute value, rather than in order of their actual value.
+
+L1 = [1, 7, 4, -2, 3]
+
+def absolute(x):
+    if x >= 0:
+        return x
+    else:
+        return -x
+
+L2 = sorted(L1, key=absolute)
+print(L2)
+
+#or in reverse order
+print(sorted(L1, reverse=True, key=absolute))
+
+#You will be sorting the following list by each element’s second letter, a to z. Create a function to use when sorting, called second_let. It will take a string as input and return the second letter of that string. Then sort the list, create a variable called sorted_by_second_let and assign the sorted list to it. Do not use lambda.
+
+ex_lst = ['hi', 'how are you', 'bye', 'apple', 'zebra', 'dance']
+
+def second_let(x):
+    return x[1]
+sorted_by_second_let = sorted(ex_lst, key=second_let)
+print(sorted_by_second_let)
+
+# Below, we have provided a list of strings called nums. Write a function called last_char that takes a string as input, and returns only its last character. Use this function to sort the list nums by the last digit of each number, from highest to lowest, and save this as a new list called nums_sorted.
+
+nums = ['1450', '33', '871', '19', '14378', '32', '1005', '44', '8907', '16']
+
+def last_char(inp):
+    return inp[-1]
+nums_sorted = sorted(nums, key=last_char, reverse=True)
+print(nums_sorted)
+
+#Once again, sort the list nums based on the last digit of each number from highest to lowest. However, now you should do so by writing a lambda function. Save the new list as nums_sorted_lambda.
+
+nums = ['1450', '33', '871', '19', '14378', '32', '1005', '44', '8907', '16']
+
+nums_sorted_lambda = sorted(nums, reverse=True, key=lambda x: int(x[-1]))
+
+#Previously, you have used a dictionary to accumulate counts, such as the frequencies of letters or words in a text. For example, the following code counts the frequencies of different numbers in the list.
+
+L = ['E', 'F', 'B', 'A', 'D', 'I', 'I', 'C', 'B', 'A', 'D', 'D', 'E', 'D']
+
+d = {}
+for x in L:
+    if x in d:
+        d[x] = d[x] + 1
+    else:
+        d[x] = 1
+for x in d.keys():
+    print("{} appears {} times".format(x, d[x]))
+    
+#Sort the following dictionary based on the keys so that they are sorted a to z. Assign the resulting value to the variable sorted_keys.
+
+dictionary = {"Flowers": 10, 'Trees': 20, 'Chairs': 6, "Firepit": 1, 'Grill': 2, 'Lights': 14}
+
+sorted_keys = sorted(dictionary.keys())
+
+#Below, we have provided the dictionary groceries, whose keys are grocery items, and values are the number of each item that you need to buy at the store. Sort the dictionary’s keys into alphabetical order, and save them as a list called grocery_keys_sorted.
+
+groceries = {'apples': 5, 'pasta': 3, 'carrots': 12, 'orange juice': 2, 'bananas': 8, 'popcorn': 1, 'salsa': 3, 'cereal': 4, 'coffee': 5, 'granola bars': 15, 'onions': 7, 'rice': 1, 'peanut butter': 2, 'spinach': 9}
+
+grocery_keys_sorted = sorted(groceries.keys(), reverse=False)
+
+#Sort the following dictionary’s keys based on the value from highest to lowest. Assign the resulting value to the variable sorted_values.
+
+dictionary = {"Flowers": 10, 'Trees': 20, 'Chairs': 6, "Firepit": 1, 'Grill': 2, 'Lights': 14}
+
+#In the code below, we are going to sort a list of fruit words first by their length, smallest to largest, and then alphabetically to break ties among words of the same length. To do that, we have the key function return a tuple whose first element is the length of the fruit’s name, and second element is the fruit name itself.
+
+fruits = ['peach', 'kiwi', 'apple', 'blueberry', 'papaya', 'mango', 'pear']
+new_order = sorted(fruits, key=lambda fruit_name: (len(fruit_name), fruit_name))
+for fruit in new_order:
+    print(fruit)
+    
+#What would happen though if we wanted to sort it by largest to smallest, and then by alphabetical order?
+
+fruits = ['peach', 'kiwi', 'apple', 'blueberry', 'papaya', 'mango', 'pear']
+new_order = sorted(fruits, key=lambda fruit_name: (len(fruit_name), fruit_name), reverse=True)
+for fruit in new_order:
+    print(fruit)
+    
+#For our first sort order, we want to sort the states in order by the length of the first city name. Here, it’s pretty easy to compute that property. states[state] is the list of cities associated with a particular state. So If state is a list of city strings, len(states[state][0]) is the length of the first city name. Thus, we can use a lambda expression:
+
+states = {"Minnesota": ["St. Paul", "Minneapolis", "Saint Cloud", "Stillwater"],
+          "Michigan": ["Ann Arbor", "Traverse City", "Lansing", "Kalamazoo"],
+          "Washington": ["Seattle", "Tacoma", "Olympia", "Vancouver"]}
+
+print(sorted(states, key=lambda state: len(states[state][0])))
+
+#Step 1. Suppose you had this list, [8, 7, 6, 6, 4, 4, 3, 1, 0], already sorted, how would you make a list of just the best 5? (Hint: take a slice).
+
+L = [8, 7, 6, 6, 4, 4, 3, 1, 0]
+L[:5]
+
+#Now suppose the list wasn’t sorted yet. How would get those same five elements from this list?
+
+L = [0, 1, 6, 7, 3, 6, 8, 4, 4]
+L2 = sorted(L, reverse=True)
+L2[:5]
+
+#Now take a list L and make a dictionary of counts for how often these numbers appear in the list.
+
+L = [0, 1, 6, 7, 3, 6, 8, 4, 4, 6, 1, 6, 6, 5, 4, 4, 3, 35, 4, 11]
+d = {}
+for x in L:
+    if x in d:
+        d[x] = d[x] + 1
+    else:
+        d[x] = 1
+        
+#Now sort the keys (numbers) based on their frequencies. Review Sorting a Dictionary if you’re not sure how to do this. Keep just the top five keys.    
+
+L = [0, 1, 6, 7, 3, 6, 8, 4, 4, 6, 1, 6, 6, 5, 4, 4, 3, 35, 4, 11]
+
+d = {}
+for x in L:
+    if x in d:
+        d[x] = d[x] + 1
+    else:
+        d[x] = 1
+
+s = sorted(d, key=lambda x: d[x], reverse=True)
+
+print(s[:5])
+
+#Finally, generalize what you’ve done. Write a function that takes a string instead of a list as a parameter and returns a list of the five most frequent characters in the string.
+
+def five_most_frequent(s):
+    d = {}
+    for x in s:
+        if x in d:
+            d[x] = d[x] + 1
+        else:
+            d[x] = 1
+
+    s = sorted(d, key=lambda x: d[x], reverse=True)
+
+    return s[:5]
+    
+#Sort the following string alphabetically, from z to a, and assign it to the variable sorted_letters.
+ 
+ letters = "alwnfiwaksuezlaeiajsdl"
+sorted_letters = sorted(letters, reverse=True)
+
+#Sort the list below, animals, into alphabetical order, a-z. Save the new list as animals_sorted.
+
+animals = ['elephant', 'cat', 'moose', 'antelope', 'elk', 'rabbit', 'zebra', 'yak', 'salamander', 'deer', 'otter', 'minx', 'giraffe', 'goat', 'cow', 'tiger', 'bear']
+animals_sorted = sorted(animals)
+
+
+#We have provided the dictionary groceries. You should return a list of its keys, but they should be sorted by their values, from highest to lowest. Save the new list as most_needed.
+
+groceries = {'apples': 5, 'pasta': 3, 'carrots': 12, 'orange juice': 2, 'bananas': 8, 'popcorn': 1, 'salsa': 3, 'cereal': 4, 'coffee': 5, 'granola bars': 15, 'onions': 7, 'rice': 1, 'peanut butter': 2, 'spinach': 9}
+most_needed = []
+ks = groceries.keys()
+most_needed = sorted(ks, key = lambda x:groceries[x],reverse = True)
+
+#Create a function called last_four that takes in an ID number and returns the last four digits. For example, the number 17573005 should return 3005. Then, use this function to sort the list of ids stored in the variable, ids, from lowest to highest. Save this sorted list in the variable, sorted_ids. Hint: Remember that only strings can be indexed, so conversions may be needed.
+
+def last_four(x):
+    return str(x)[-4:]
+
+ids = [17573005, 17572342, 17579000, 17570002, 17572345, 17579329]
+d = {}
+for id in ids:
+
+    d[id] = last_four(id)
+
+ks = d.keys()
+sorted_ids = sorted(ks,key = lambda x:d[x])
+
+#Sort the list ids by the last four digits of each id. Do this using lambda and not using a defined function. Save this sorted list in the variable sorted_id.
+
+ids = [17573005, 17572342, 17579000, 17570002, 17572345, 17579329]
+d = {}
+for id in ids:
+
+    d[id] = str(id)[-4:]
+ks = d.keys()
+sorted_id = sorted(ks,key = lambda x:d[x])
+
+#Sort the following list by each element’s second letter a to z. Do so by using lambda. Assign the resulting value to the variable lambda_sort.
+
+ex_lst = ['hi', 'how are you', 'bye', 'apple', 'zebra', 'dance']
+d = {}
+for ex in ex_lst:
+    d[ex] = ex[1]
+ks = d.keys()
+lambda_sort = sorted(ks, key = lambda x:d[x])
+
+#To start, define a function called strip_punctuation which takes one parameter, a string which represents a word, and removes characters considered punctuation from everywhere in the word. (Hint: remember the .replace() method for strings.)
+
+punctuation_chars = ["'", '"', ",", ".", "!", ":", ";", '#', '@']
+def strip_punctuation(x):
+    for y in punctuation_chars:
+        x = x.replace(y, "")
+    return x
+    
+    
