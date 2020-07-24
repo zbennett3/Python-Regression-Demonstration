@@ -2361,3 +2361,406 @@ def strip_punctuation(x):
     return x
     
     
+#The lists we have seen so far have had numbers or strings as items. We’ve snuck in a few more complex items, but without ever explicitly discussing what it meant to have more complex items.
+
+#In fact, the items in a list can be any type of python object. For example, we can have a list of lists.
+
+nested1 = [['a', 'b', 'c'],['d', 'e'],['f', 'g', 'h']]
+print(nested1[0])
+print(len(nested1))
+nested1.append(['i'])
+print("-------")
+for L in nested1:
+    print(L)
+    
+#With a nested list, you can make complex expressions to get or set a value in a sub-list.
+
+nested1 = [['a', 'b', 'c'],['d', 'e'],['f', 'g', 'h']]
+y = nested1[1]
+print(y)
+print(y[0])
+
+print([10, 20, 30][1])
+print(nested1[1][0])
+
+#You can even have a list of functions (!).
+
+def square(x):
+    return x*x
+
+L = [square, abs, lambda x: x+1]
+
+print("****names****")
+for f in L:
+    print(f)
+
+print("****call each of them****")
+for f in L:
+    print(f(-2))
+
+print("****just the first one in the list****")
+print(L[0])
+print(L[0](3))
+
+# Below, we have provided a list of lists. Use indexing to assign the element ‘horse’ to the variable name idx1.
+
+animals = [['cat', 'dog', 'mouse'], ['horse', 'cow', 'goat'], ['cheetah', 'giraffe', 'rhino']]
+idx1 = animals[1][0]
+print(idx1)
+
+#Using indexing, retrieve the string ‘willow’ from the list and assign that to the variable plant.
+
+data = ['bagel', 'cream cheese', 'breakfast', 'grits', 'eggs', 'bacon', [34, 9, 73, []], [['willow', 'birch', 'elm'], 'apple', 'peach', 'cherry']]
+plant = data[7][0][0]
+print(plant)
+
+#Extract the value associated with the key color and assign it to the variable color. Do not hard code this.
+
+
+info = {'personal_data':
+         {'name': 'Lauren',
+          'age': 20,
+          'major': 'Information Science',
+          'physical_features':
+             {'color': {'eye': 'blue',
+                        'hair': 'brown'},
+              'height': "5'8"}
+         },
+       'other':
+         {'favorite_colors': ['purple', 'green', 'blue'],
+          'interested_in': ['social media', 'intellectual property', 'copyright', 'music', 'books']
+         }
+      }
+color = info['personal_data']['physical_features']['color']
+print(color)
+
+#Again, python provides a module for doing this. The module is called json. We will be using two functions in this module, loads and dumps.
+
+#json.loads() takes a string as input and produces a python object (a dictionary or a list) as output.
+
+#Consider, for example, some data that we might get from Apple’s iTunes, in the JSON format:
+
+import json
+a_string = '\n\n\n{\n "resultCount":25,\n "results": [\n{"wrapperType":"track", "kind":"podcast", "collectionId":10892}]}'
+print(a_string)
+d = json.loads(a_string)
+print("------")
+print(type(d))
+print(d.keys())
+print(d['resultCount'])
+# print(a_string['resultCount'])
+
+import json
+def pretty(obj):
+    return json.dumps(obj, sort_keys=True, indent=2)
+
+d = {'key1': {'c': True, 'a': 90, '5': 50}, 'key2':{'b': 3, 'c': "yes"}}
+
+print(d)
+print('--------')
+print(pretty(d))
+
+#When you have nested data structures, especially lists and/or dictionaries, you will frequently need nested for loops to traverse them.
+
+nested1 = [['a', 'b', 'c'],['d', 'e'],['f', 'g', 'h']]
+for x in nested1:
+    print("level1: ")
+    for y in x:
+        print("     level2: " + y)
+        
+#. Below, we have provided a list of lists that contain information about people. Write code to create a new list that contains every person’s last name, and save that list as last_names.
+
+info = [['Tina', 'Turner', 1939, 'singer'], ['Matt', 'Damon', 1970, 'actor'], ['Kristen', 'Wiig', 1973, 'comedian'], ['Michael', 'Phelps', 1985, 'swimmer'], ['Barack', 'Obama', 1961, 'president']]
+last_names = []
+for entertainer in info:
+    last_names.append(entertainer[1])
+    
+#Below, we have provided a list of lists named L. Use nested iteration to save every string containing “b” into a new list named b_strings.
+
+L = [['apples', 'bananas', 'oranges', 'blueberries', 'lemons'], ['carrots', 'peas', 'cucumbers', 'green beans'], ['root beer', 'smoothies', 'cranberry juice']]
+b_strings = []
+for lst in L:
+    for word in lst:
+        if 'b' in word:
+            b_strings.append(word)
+            
+
+
+#When you copy a nested list, you do not also get copies of the internal lists. This means that if you perform a mutation operation on one of the original sublists, the copied version will also change. We can see this happen in the following nested list, which only has two levels.
+
+original = [['dogs', 'puppies'], ['cats', "kittens"]]
+copied_version = original[:]
+print(copied_version)
+print(copied_version is original)
+print(copied_version == original)
+original[0].append(["canines"])
+print(original)
+print("-------- Now look at the copied version -----------")
+print(copied_version)
+
+#Assuming that you don’t want to have aliased lists inside of your nested list, then you’ll need to perform nested iteration.
+
+original = [['dogs', 'puppies'], ['cats', "kittens"]]
+copied_outer_list = []
+for inner_list in original:
+    copied_inner_list = []
+    for item in inner_list:
+        copied_inner_list.append(item)
+    copied_outer_list.append(copied_inner_list)
+print(copied_outer_list)
+original[0].append(["canines"])
+print(original)
+print("-------- Now look at the copied version -----------")
+print(copied_outer_list)
+
+#Or, equivalently, you could take advantage of the slice operator to do the copying of the inner list.
+
+original = [['dogs', 'puppies'], ['cats', "kittens"]]
+copied_outer_list = []
+for inner_list in original:
+    copied_inner_list = inner_list[:]
+    copied_outer_list.append(copied_inner_list)
+print(copied_outer_list)
+original[0].append(["canines"])
+print(original)
+print("-------- Now look at the copied version -----------")
+print(copied_outer_list)
+
+#This process above works fine when there are only two layers or levels in a nested list. However, if we want to make a copy of a nested list that has more than two levels, then we recommend using the copy module. In the copy module there is a method called deepcopy that will take care of the operation for you.
+
+import copy
+original = [['canines', ['dogs', 'puppies']], ['felines', ['cats', 'kittens']]]
+shallow_copy_version = original[:]
+deeply_copied_version = copy.deepcopy(original)
+original.append("Hi there")
+original[0].append(["marsupials"])
+print("-------- Original -----------")
+print(original)
+print("-------- deep copy -----------")
+print(deeply_copied_version)
+print("-------- shallow copy -----------")
+print(shallow_copy_version)
+
+#Follow the system described below and you will have success with extracting nested data. The process involves the following steps:
+
+#Understand the nested data object.
+
+#Extract one object at the next level down.
+
+#Repeat the process with the extracted object
+
+#Understand. Extract. Repeat.
+
+#To illustrate this, we will walk through extracting information from data formatted in a way that it’s return by the Twitter API. This nested dictionary results from querying Twitter, asking for three tweets matching “University of Michigan”. As you’ll see, it’s quite a daunting data structure, even when printed with nice indentation as it’s shown below.
+
+#The variable nested contains a nested list. Assign ‘snake’ to the variable output using indexing.
+
+nested = [['dog', 'cat', 'horse'], ['frog', 'turtle', 'snake', 'gecko'], ['hamster', 'gerbil', 'rat', 'ferret']]
+output = nested[1][2]
+
+#Below, a list of lists is provided. Use in and not in tests to create variables with Boolean values. See comments for further instructions.
+
+
+lst = [['apple', 'orange', 'banana'], [5, 6, 7, 8, 9.9, 10], ['green', 'yellow', 'purple', 'red']]
+
+#Test to see if 'yellow' is in the third list of lst. Save to variable ``yellow``
+yellow = 'yellow' in lst[2]
+
+#Test to see if 4 is in the second list of lst. Save to variable ``four``
+four = 4 in lst[1]
+
+#Test to see if 'orange' is in the first element of lst. Save to variable ``orange``
+orange = 'orange' in lst[0]
+
+#Below, we’ve provided a list of lists. Use in statements to create variables with Boolean values - see the ActiveCode window for further directions.
+
+L = [[5, 8, 7], ['hello', 'hi', 'hola'], [6.6, 1.54, 3.99], ['small', 'large']]
+
+# Test if 'hola' is in the list L. Save to variable name test1
+test1 = 'hola' in L
+# Test if [5, 8, 7] is in the list L. Save to variable name test2
+test2 = [5, 8, 7] in L
+
+# Test if 6.6 is in the third element of list L. Save to variable name test3
+test3 = 6.6 in L[2]
+
+#Provided is a nested data structure. Follow the instructions in the comments below. Do not hard code.
+
+nested = {'data': ['finding', 23, ['exercises', 'hangout', 34]], 'window': ['part', 'whole', [], 'sum', ['math', 'calculus', 'algebra', 'geometry', 'statistics',['physics', 'chemistry', 'biology']]]}
+
+# Check to see if the string data is a key in nested, if it is, assign True to the variable data, otherwise assign False.
+if 'data' in nested:
+    data = True
+else:
+    data = False
+
+# Check to see if the integer 24 is in the value of the key data, if it is then assign to the variable twentyfour the value of True, otherwise False.
+if 24 in nested:
+    twentyfour = True
+else:
+    twentyfour = False
+# Check to see that the string 'whole' is not in the value of the key window. If it's not, then assign to the variable whole the value of True, otherwise False.
+if 'whole' in nested:
+    whole = True
+else:
+    whole = False
+# Check to see if the string 'physics' is a key in the dictionary nested. If it is, assign to the variable physics, the value of True, otherwise False.
+if 'physics' in nested:
+    physics = True
+else:
+    physics = False
+
+#The variable nested_d contains a nested dictionary with the gold medal counts for the top four countries in the past three Olympics. Assign the value of Great Britain’s gold medal count from the London Olympics to the variable london_gold. Use indexing. Do not hardcode
+
+nested_d = {'Beijing':{'China':51, 'USA':36, 'Russia':22, 'Great Britain':19}, 'London':{'USA':46, 'China':38, 'Great Britain':29, 'Russia':22}, 'Rio':{'USA':35, 'Great Britain':22, 'China':20, 'Germany':13}}
+london_gold = nested_d['London']['Great Britain']
+
+#Below, we have provided a nested dictionary. Index into the dictionary to create variables that we have listed in the ActiveCode window.
+
+
+sports = {'swimming': ['butterfly', 'breaststroke', 'backstroke', 'freestyle'], 'diving': ['springboard', 'platform', 'synchronized'], 'track': ['sprint', 'distance', 'jumps', 'throws'], 'gymnastics': {'women':['vault', 'floor', 'uneven bars', 'balance beam'], 'men': ['vault', 'parallel bars', 'floor', 'rings']}}
+
+# Assign the string 'backstroke' to the name v1
+v1 = sports['swimming'][2]
+# Assign the string 'platform' to the name v2
+v2 = sports['diving'][1]
+
+# Assign the list ['vault', 'floor', 'uneven bars', 'balance beam'] to the name v3
+v3 = sports['gymnastics']['women']
+
+# Assign the string 'rings' to the name v4
+v4 = sports['gymnastics']['men'][3]
+
+#Given the dictionary, nested_d, save the medal count for the USA from all three Olympics in the dictionary to the list US_count.
+
+
+nested_d = {'Beijing':{'China':51, 'USA':36, 'Russia':22, 'Great Britain':19}, 'London':{'USA':46, 'China':38, 'Great Britain':29, 'Russia':22}, 'Rio':{'USA':35, 'Great Britain':22, 'China':20, 'Germany':13}}
+
+US_count = []
+
+US_count.append(nested_d['Beijing']['USA'])
+US_count.append(nested_d['London']['USA'])
+US_count.append(nested_d['Rio']['USA'])
+
+#Iterate through the contents of l_of_l and assign the third element of sublist to a new list called third.
+
+l_of_l = [['purple', 'mauve', 'blue'], ['red', 'maroon', 'blood orange', 'crimson'], ['sea green', 'cornflower', 'lavender', 'indigo'], ['yellow', 'amarillo', 'mac n cheese', 'golden rod']]
+
+third = [i[2] for i in l_of_l]
+
+#Given below is a list of lists of athletes. Create a list, t, that saves only the athlete’s name if it contains the letter “t”. If it does not contain the letter “t”, save the athlete name into list other.
+
+athletes = [['Phelps', 'Lochte', 'Schooling', 'Ledecky', 'Franklin'], ['Felix', 'Bolt', 'Gardner', 'Eaton'], ['Biles', 'Douglas', 'Hamm', 'Raisman', 'Mikulak', 'Dalton']]
+
+t = []
+other = []
+
+for list in athletes:
+    for char in list:
+        if 't' in char:
+            t.append(char)
+        else:
+            other.append(char)
+            
+
+#The code below takes the list of country, country, and searches to see if it is in the dictionary gold which shows some countries who won gold during the Olympics. However, this code currently does not work. Correctly add try/except clause in the code so that it will correctly populate the list, country_gold, with either the number of golds won or the string “Did not get gold”.
+
+gold = {"US":46, "Fiji":1, "Great Britain":27, "Cuba":5, "Thailand":2, "China":26, "France":10}
+country = ["Fiji", "Chile", "Mexico", "France", "Norway", "US"]
+country_gold = []
+
+for x in country:
+    try:
+        country_gold.append(gold[x])
+    except Exception:
+        country_gold.append("Did not get gold")
+
+#Provided is a buggy for loop that tries to accumulate some values out of some dictionaries. Insert a try/except so that the code passes.
+
+di = [{"Puppies": 17, 'Kittens': 9, "Birds": 23, 'Fish': 90, "Hamsters": 49}, {"Puppies": 23, "Birds": 29, "Fish": 20, "Mice": 20, "Snakes": 7}, {"Fish": 203, "Hamsters": 93, "Snakes": 25, "Kittens": 89}, {"Birds": 20, "Puppies": 90, "Snakes": 21, "Fish": 10, "Kittens": 67}]
+total = 0
+for diction in di:
+    try:
+        total = total + diction['Puppies']
+    except Exception:
+        total = total + 0
+        
+print("Total number of puppies:", total)
+
+#The list, numb, contains integers. Write code that populates the list remainder with the remainder of 36 divided by each number in numb. For example, the first element should be 0, because 36/6 has no remainder. If there is an error, have the string “Error” appear in the remainder.
+
+numb = [6, 0, 36, 8, 2, 36, 0, 12, 60, 0, 45, 0, 3, 23]
+
+remainder = []
+
+for number in numb:
+    try:
+        remainder.append(36%number)
+    except Exception:
+        remainder.append("Error")
+        
+
+#Provided is buggy code, insert a try/except so that the code passes.
+
+lst = [2,4,10,42,12,0,4,7,21,4,83,8,5,6,8,234,5,6,523,42,34,0,234,1,435,465,56,7,3,43,23]
+
+lst_three = []
+
+for num in lst:
+    try:
+        if 3 % num == 0:
+            lst_three.append(num)
+    except Exception:
+        lst_three = lst_three
+        
+ #Write code so that the buggy code provided works using a try/except. When the codes does not work in the try, have it append to the list attempt the string “Error”.
+ 
+ full_lst = ["ab", 'cde', 'fgh', 'i', 'jkml', 'nop', 'qr', 's', 'tv', 'wxy', 'z']
+
+attempt = []
+
+for elem in full_lst:
+    try:
+        attempt.append(elem[1])
+    except Exception:
+        attempt.append("Error")
+        
+        
+#The following code tries to append the third element of each list in conts to the new list third_countries. Currently, the code does not work. Add a try/except clause so the code runs without errors, and the string ‘Continent does not have 3 countries’ is appended to countries instead of producing an error.
+
+conts = [['Spain', 'France', 'Greece', 'Portugal', 'Romania', 'Germany'], ['USA', 'Mexico', 'Canada'], ['Japan', 'China', 'Korea', 'Vietnam', 'Cambodia'], ['Argentina', 'Chile', 'Brazil', 'Ecuador', 'Uruguay', 'Venezuela'], ['Australia'], ['Zimbabwe', 'Morocco', 'Kenya', 'Ethiopa', 'South Africa'], ['Antarctica']]
+
+third_countries = []
+
+for c in conts:
+    try:
+        third_countries.append(c[2])
+    except Exception:
+        third_countries.append("Continent does not have 3 countries")
+        
+#The buggy code below prints out the value of the sport in the list sport. Use try/except so that the code will run properly. If the sport is not in the dictionary, ppl_play, add it in with the value of 1.
+
+sport = ["hockey", "basketball", "soccer", "tennis", "football", "baseball"]
+
+ppl_play = {"hockey":4, "soccer": 10, "football": 15, "tennis": 8}
+
+for x in sport:
+    try:
+        print(ppl_play[x])
+    except Exception:
+        ppl_play[x] = 1
+
+#Provided is a buggy for loop that tries to accumulate some values out of some dictionaries. Insert a try/except so that the code passes. If the key is not there, initialize it in the dictionary and set the value to zero.
+
+di = [{"Puppies": 17, 'Kittens': 9, "Birds": 23, 'Fish': 90, "Hamsters": 49}, {"Puppies": 23, "Birds": 29, "Fish": 20, "Mice": 20, "Snakes": 7}, {"Fish": 203, "Hamsters": 93, "Snakes": 25, "Kittens": 89}, {"Birds": 20, "Puppies": 90, "Snakes": 21, "Fish": 10, "Kittens": 67}]
+total = 0
+for diction in di:
+    try:
+        total = total + diction['Puppies']
+    except Exception:
+        diction["Puppies"] = 0
+        total = total + diction['Puppies']
+
+print("Total number of puppies:", total)
+        
+        
