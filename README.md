@@ -9,12 +9,12 @@ For the Logistic Regression Models, a dataset of Titanic Survivors was used to p
 For the Poisson Regression demonstration, a dataset of Seoul Bike Sharing Demand was used to explore the relationship between the number of rented bikes and other variables such as outside temperature, month, rainfall, etc (found here: https://www.kaggle.com/datasets/joebeachcapital/seoul-bike-sharing/data).
 
 Contents of Collection:
-Jupyter Notebook of Regression Demonstration: regression_demonstration.ipynb
-List of python packages used: requirements.txt
-The datasets have provided in the collection as follows:
-Personal Medical Costs (insurance.csv)
-Titanic Survivors (survivors.csv)
-Seoul Bike Sharing Demand (SeoulBikeData.csv)
+1. Jupyter Notebook of Regression Demonstration: regression_demonstration.ipynb
+2. List of python packages used: requirements.txt
+3. The datasets have provided in the collection as follows:
+*Personal Medical Costs (insurance.csv)
+*Titanic Survivors (survivors.csv)
+*Seoul Bike Sharing Demand (SeoulBikeData.csv)
 
 Future Work:
 As this notebook is currently used for demonstration purposes mainly, the performance of the models could be improved with further data cleaning and manipulation. For future work, further data cleaning and manipulation steps will be implemented, and the version of this collection will be updated.
