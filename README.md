@@ -12,9 +12,9 @@ Contents of Collection:
 1. Jupyter Notebook of Regression Demonstration: regression_demonstration.ipynb
 2. List of python packages used: requirements.txt
 3. The datasets have provided in the collection as follows:
-*Personal Medical Costs (insurance.csv)
-*Titanic Survivors (survivors.csv)
-*Seoul Bike Sharing Demand (SeoulBikeData.csv)
+-Personal Medical Costs (insurance.csv)
+-Titanic Survivors (survivors.csv)
+-Seoul Bike Sharing Demand (SeoulBikeData.csv)
 
 Future Work:
 As this notebook is currently used for demonstration purposes mainly, the performance of the models could be improved with further data cleaning and manipulation. For future work, further data cleaning and manipulation steps will be implemented, and the version of this collection will be updated.
